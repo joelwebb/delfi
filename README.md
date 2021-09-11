@@ -35,7 +35,6 @@ To start the API move into the API folder.
 $ python3 api/run.py  
 ```
 
-
 ## Testing the API
 All API methods are behind a `/` base URL 
 
@@ -45,6 +44,10 @@ While running venv, your host address might be different than localhost, so chec
 Swaggeer will provide example curl commands to test the API. 
 
 You can integrate with a client that supports swagger/OpenAPI schemas by using the swagger docs in `/static/swagger.json`.
+
+## Seeding the db
+To seed the DB, visit http://localhost:8000/seed --- this will load some sample static files from csv to pre-populate the database with dummy data. Then your api calls should work.
+
 
 # Trie comparison
 After looking through github, there are about 15 python packages by google and other research teams for generating tries with different optimization techniques.
@@ -89,6 +92,10 @@ $ sudo docker run -d -p 8000:8000 defli
 On my windows machine building the image put the image in a different location: docker.io/library/delfi:latest
 
 So make sure you call the run command on the right image location or it wont work.
+
+Then when the image is running, visit: http://localhost:8000/docs/ to view the swagger UI.
+
+
 
 ## Limitations
 
