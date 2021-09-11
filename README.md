@@ -79,8 +79,10 @@ $ python3 trie/marissa_testing.py
 A dockerfile is included to create a containerised microservice - build and run from the repository directory with:
 
 ```
-sudo docker build -t delfi:latest .
-sudo docker run -d -p 8000:8000 defli 
+$ git clone https://github.com/joelwebb/delfi.git
+$ cd delfi
+$ sudo docker build -t delfi:latest .
+$ sudo docker run -d -p 8000:8000 defli 
 ```
 
 ## Limitations
