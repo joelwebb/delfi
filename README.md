@@ -85,6 +85,11 @@ $ sudo docker build -t delfi:latest .
 $ sudo docker run -d -p 8000:8000 defli 
 ```
 
+**Note** 
+On my windows machine building the image put the image in a different location: docker.io/library/delfi:latest
+
+So make sure you call the run command on the right image location or it wont work.
+
 ## Limitations
 
 - For production DB purposes, swap to Mongo or AWS RDS over the local db. Since there was no indication of purpose of deployment/application integration, a simple local DB was integrated that can also be run in memory.
