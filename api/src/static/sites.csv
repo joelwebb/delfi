@@ -1,0 +1,6 @@
+﻿id,name,address,instruments,created_at,updated_at
+1,Joes Lab,"123 science lane, Raleigh NC, 27560",1,9/9/2021,9/9/2021
+2,Mikes Lab,"456 R&D road, Raleigh NC, 27560",2,9/9/2021,9/9/2021
+3,Sallys Lab,"78 research drive, Raleigh NC, 27560",3,9/9/2021,9/9/2021
+4,Third Floor,"123 science lane, Raleigh NC, 27560",4,9/9/2021,9/9/2021
+5,Second Floor,"123 science lane, Raleigh NC, 27560",5,9/9/2021,9/9/2021

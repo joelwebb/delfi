@@ -1,0 +1,730 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample server for API calls for Delfi.",
+    "version": "1.0.0",
+    "title": "Laboratory API",
+    "contact": {
+      "email": "Josephlawrencewebb@gmail.com"
+    }
+  },
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "check if the endpoint is healthy",
+        "description": "",
+        "operationId": "healthy",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "site not found"
+          }
+        }
+      }
+    },
+    "/seed": {
+      "get": {
+        "tags": [
+          "seed"
+        ],
+        "summary": "seeds a local DB with data",
+        "description": "",
+        "operationId": "seed_the_db",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "site not found"
+          }
+        }
+      }
+    },
+    "/site": {
+      "get": {
+        "tags": [
+          "site"
+        ],
+        "summary": "returns all site data",
+        "description": "",
+        "operationId": "get_all_sites",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/site"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "site not found"
+          }
+        }
+      }
+    },
+    "/site/{siteId}": {
+      "get": {
+        "tags": [
+          "site"
+        ],
+        "summary": "Find site by ID",
+        "description": "Returns a single site",
+        "operationId": "get_one_site",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "siteId",
+            "in": "path",
+            "description": "ID of site to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/site"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "site not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "site"
+        ],
+        "summary": "create a new site",
+        "description": "creates a new site record",
+        "operationId": "create",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "siteId",
+            "in": "path",
+            "description": "ID of site that needs to be updated",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "site object that needs to be added to the db",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/site"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "site not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "site"
+        ],
+        "summary": "Update an existing site",
+        "description": "",
+        "operationId": "update_site",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "siteId",
+            "in": "path",
+            "description": "ID of site that needs to be updated",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "site object that needs to be added to the db",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/site"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "site not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "site"
+        ],
+        "summary": "Deletes a site",
+        "description": "",
+        "operationId": "deletesite",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "siteId",
+            "in": "path",
+            "description": "site id to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful deletion"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "site not found"
+          }
+        }
+      }
+    },
+    "/instrument": {
+      "get": {
+        "tags": [
+          "instrument"
+        ],
+        "summary": "returns information on all instruments",
+        "description": "",
+        "operationId": "get_all_instruments",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          },
+          "405": {
+            "description": "invalid input"
+          }
+        }
+      }
+    },
+    "/instrument/{instrumentId}": {
+      "get": {
+        "tags": [
+          "instrument"
+        ],
+        "summary": "Find instrument by ID",
+        "description": "Returns a single instrument",
+        "operationId": "get_one_instrument",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "instrumentId",
+            "in": "path",
+            "description": "ID of instrument to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/instrument"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "instrument not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "instrument"
+        ],
+        "summary": "create new instrument",
+        "description": "",
+        "operationId": "create_instrument",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "instrumentId",
+            "in": "path",
+            "description": "ID of instrument that needs to be updated",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "instrument object that needs to be added to the db",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/instrument"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "instrument not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "instrument"
+        ],
+        "summary": "Update an existing instrument",
+        "description": "",
+        "operationId": "update_instrument",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "instrumentId",
+            "in": "path",
+            "description": "ID of instrument that needs to be updated",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "instrument object that needs to be added to the db",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/instrument"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "instrument not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "instrument"
+        ],
+        "summary": "Deletes a instrument",
+        "description": "",
+        "operationId": "deleteinstrument",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "instrumentId",
+            "in": "path",
+            "description": "instrument id to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful deletion"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "instrument not found"
+          }
+        }
+      }
+    },
+    "/container": {
+      "get": {
+        "tags": [
+          "container"
+        ],
+        "summary": "Returns all container information",
+        "description": "",
+        "operationId": "get_all_containers",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/container/{containerId}": {
+      "get": {
+        "tags": [
+          "container"
+        ],
+        "summary": "Find container by ID",
+        "description": "Returns a single container",
+        "operationId": "get_one_container",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "containerId",
+            "in": "path",
+            "description": "ID of container to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/container"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "container not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "container"
+        ],
+        "summary": "Deletes a container",
+        "description": "",
+        "operationId": "deletecontainer",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "containerId",
+            "in": "path",
+            "description": "container id to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful deletion"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "container not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "container"
+        ],
+        "summary": "create new container",
+        "description": "",
+        "operationId": "create_container",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "containerId",
+            "in": "path",
+            "description": "container id to create",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "container object that needs to be added to the db",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/container"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "container not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "container"
+        ],
+        "summary": "Update an existing container",
+        "description": "",
+        "operationId": "update_container",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "containerId",
+            "in": "path",
+            "description": "container id to update",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "container object that needs to be added to the db",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/container"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "container not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "sitetore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://sitetore.swagger.io/oauth/dialog",
+      "flow": "implicit",
+      "scopes": {
+        "write:site": "modify site in your account",
+        "read:site": "read your site"
+      }
+    },
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "site": {
+      "type": "string",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "instruments": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "instrument": {
+      "type": "string",
+      "properties": {
+        "computer": {
+          "type": "string"
+        },
+        "mac_address": {
+          "type": "string"
+        },
+        "site_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "freezer": {
+          "type": "string"
+        },
+        "containers": {
+          "type": "string"
+        }
+      }
+    },
+    "container": {
+      "type": "string",
+      "properties": {
+        "container": {
+          "type": "string"
+        },
+        "uuid_barcode": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "instruments_id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    }
+  }
+}

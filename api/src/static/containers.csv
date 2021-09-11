@@ -1,0 +1,6 @@
+﻿id,container,description,uuid_barcode,instruments_id,created_at,updated_at
+1,container_a,1.5ml tube pcr study # 1,1234-1234-1234-abc-1234,1,9/9/2021,9/9/2021
+2,container_b,1.5ml tube pcr study # 2,1234-1234-1234-abc-1235,1,9/9/2021,9/9/2021
+3,container_b,1.5ml tube pcr study # 3,1234-1234-1234-abc-1236,2,9/9/2021,9/9/2021
+4,container_d,1.5ml tube pcr study # 4,1234-1234-1234-abc-1237,2,9/9/2021,9/9/2021
+5,container_e,1.5ml tube pcr study # 5,1234-1234-1234-abc-1238,3,9/9/2021,9/9/2021
